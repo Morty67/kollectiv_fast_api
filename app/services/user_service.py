@@ -9,13 +9,16 @@ from config import password_context
 
 class UserService:
     """
-    Service class for user-related operations including registration, login, and information retrieval.
+    Service class for user-related operations including registration, login,
+        and information retrieval.
 
-    This class provides methods to register new users, authenticate users during login,
+    This class provides methods to register new users, authenticate users
+        during login,
     and retrieve last login and last request timestamps for users.
 
     Attributes:
-        user_repo (UserRepository): An instance of UserRepository for database operations related to users.
+        user_repo (UserRepository): An instance of UserRepository for database
+            operations related to users.
     """
 
     def __init__(self, user_repo: UserRepository):
@@ -29,10 +32,12 @@ class UserService:
             user_data (UserCreate): The data for creating the new user.
 
         Returns:
-            UserResponse: An instance of UserResponse containing the details of the registered user.
+            UserResponse: An instance of UserResponse containing the details
+                of the registered user.
 
         Raises:
-            HTTPException: If a user with the same username or email already exists.
+            HTTPException: If a user with the same username or email already
+                exists.
         """
         if await self.user_repo.exists_by_username(user_data.username):
             raise HTTPException(
