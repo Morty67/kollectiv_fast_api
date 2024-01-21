@@ -18,6 +18,7 @@ class CategoryRepository(BaseRepository):
     Attributes:
         model (Category): The SQLAlchemy model associated with the repository.
     """
+
     model = Category
 
     async def create_category(self, category_create: dict) -> Category:
@@ -81,7 +82,8 @@ class CategoryRepository(BaseRepository):
         self, category_id: int, category_update: CategoryUpdate
     ) -> CategoryResponse | None:
         """
-        Updates the category data based on the provided ID and update information.
+        Updates the category data based on the provided ID and update,
+            information.
 
         Args:
             category_id (int): ID of the category to update.

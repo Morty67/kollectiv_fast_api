@@ -86,7 +86,7 @@ class TaskRepository(BaseRepository):
 
         Returns:
             TaskResponse: The task information wrapped in a response object.
-            None: If the task is not found.
+                None: If the task is not found.
         """
         query = select(self.model).where(self.model.id == task_id)
         return await self.get_one(query)
@@ -104,7 +104,7 @@ class TaskRepository(BaseRepository):
         Returns:
             TaskResponse: The updated task information wrapped in a response
                 object.
-            None: If the task is not found.
+                None: If the task is not found.
         """
         query = (
             update(self.model)
