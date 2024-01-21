@@ -1,4 +1,4 @@
-# FastAPI for User and Article Management
+# FastAPI for User and Tasks with Categories Management
 This project is a server-side component of a web application that provides APIs for managing users and tasks and their categories. It uses the FastAPI framework to create API endpoints and stores data in a PostgreSQL database.
 ## Technologies Used
 
