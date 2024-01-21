@@ -19,6 +19,39 @@ celery = Celery(
 
 @celery.task
 def send_email_message(image_bytes, recipient_email):
+    """
+    Celery task to send an email with an optimized image attachment.
+
+    Args:
+        image_bytes (bytes): The optimized image content as bytes.
+        recipient_email (str): The email address of the recipient.
+
+    Returns:
+        None
+
+    Raises:
+        Exception: If there is an error during the email sending process.
+
+    Comments:
+        - This task is designed to be used asynchronously with Celery.
+            It takes the optimized image content in bytes and the
+            recipient's email address as arguments.
+
+        - The function creates a MIMEMultipart object for an email, attaches a
+            text message, and adds the optimized image as an attachment.
+
+        - It uses SMTP_SSL to establish a secure connection to the SMTP server
+            and sends the email.
+
+        - The function is decorated with @celery.task to make it a Celery task.
+
+        - If any exception occurs during the email sending process,
+            it is caught, and an error message is printed to the console.
+            You may consider logging the error for better tracking.
+
+    Usage:
+        send_email_message.delay(optimized_image_bytes, "recipient@example.com")
+    """
     try:
         # Create a MIMEMultipart object for an email
         msg = MIMEMultipart()
