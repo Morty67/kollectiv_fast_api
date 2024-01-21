@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - 8001:8000
+      - 5556:5555
+    volumes:
+      - .:/app
+    depends_on:
+      - celerybackend
+    environment:
+      DB_HOST: main_db_container
+      DB_PORT: 5432
+
+  celerybackend:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 30s
+      retries: 50
+    restart: always
+
+  main_db:
+    image: postgres:latest
+    container_name: main_db_container
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    ports:
+      - "5432:5432"
+    volumes:
+      - main_db_data:/var/lib/postgresql/data
+
+volumes:
+  main_db_data:
