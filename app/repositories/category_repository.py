@@ -11,6 +11,13 @@ from app.serializers.category_serializer import (
 
 
 class CategoryRepository(BaseRepository):
+    """
+    CategoryRepository extends BaseRepository and provides specific methods,
+        for interacting with the 'Category' model.
+
+    Attributes:
+        model (Category): The SQLAlchemy model associated with the repository.
+    """
     model = Category
 
     async def create_category(self, category_create: dict) -> Category:
